@@ -4,7 +4,7 @@
 # Input:
 # text = "banana"
 # Expected Output:
-# {'b': 1, 'a': 3, 'n': 2}
+# {'b': 1, 'a': 3, 'n': 2}.
 def function_count(str):
     dict = {}
     for i in str:
