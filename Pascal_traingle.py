@@ -9,3 +9,4 @@ def pascals_triangle(n):
 
 
 print(pascals_triangle(5))
+print(pascals_triangle(10))
