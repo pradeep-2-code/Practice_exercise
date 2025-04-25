@@ -11,12 +11,12 @@ def safe_calculator(operation, num1, num2):
             return num1 * num2
         elif operation == "/":
             if num2 == 0:
-                return "Error: Cannot divide by zero"
+                return "Cannot divide by zero"
             return num1 / num2
         else:
-            return f"Error: Unsupported operation '{operation}'"
+            return f"Unsupported operation '{operation}'"
 
     except ValueError:
-        return "Error: Invalid number input"
+        return "Invalid number input"
     except Exception as e:
-        return f"Unexpected error occurred: {str(e)}"
+        return f"Unexpected error: {str(e)}"
