@@ -1,41 +1,22 @@
-def analysis_grades(grades):
-    valid_grades = []
-    error_count = 0
-
-    for name, grade in grades.items():
-        if not isinstance(grade, (int, float)):
-            print(f"Warning: Invalid grade format for {name}: {grade}")
-            error_count += 1
-
-        elif grade < 0 or grade > 100:
-            print(f"Warning: Invalid grade range for {name}: {grade}")
-            error_count += 1
+Grades1 = {"Eve": "Not graded", "Frank": 88, "Grace": -5, "Henry": 105, "Ivy": 91}
+new_dic = {}
+another_dic = {}
+count = 0
+for k, v in Grades1.items():
+    if isinstance(v, int):
+        if v < 0 or v > 100:
+            print(f"Warning: Invalid grade range for {k}")
+            count += 1
         else:
-            valid_grades.append(grade)
-
-    if valid_grades:
-        average = sum(valid_grades) / len(valid_grades)
-        highest = max(valid_grades)
-        lowest = min(valid_grades)
-        count = len(valid_grades)
-
-        return {
-            "errors": error_count,
-            "average": round(average, 2),
-            "highest": highest,
-            "lowest": lowest,
-            "count": count,
-        }
+            new_dic[k] = v
     else:
-        return {
-            "errors": error_count,
-            "average": None,
-            "highest": None,
-            "lowest": None,
-            "count": 0,
-        }
+        print(f"Warning: Invalid grade format for {k} ")
+        count += 1
 
-
-analysis_grades(
-    Grades1={"Eve": "Not graded", "Frank": 88, "Grace": -5, "Henry": 105, "Ivy": 91}
-)
+values = new_dic.values()
+another_dic["Highest"] = max(values)
+another_dic["lowest"] = min(values)
+another_dic["average"] = sum(values) / len(values)
+another_dic["count"] = len(values)
+another_dic["Errors"] = count
+print(another_dic)
