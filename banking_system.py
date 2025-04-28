@@ -6,58 +6,52 @@ def show_menu():
     print("1. Check Balance")
     print("2. Deposit Money")
     print("3. Withdraw Money")
-    print("4. Exit")
 
 
-def check_balance(user):
-    print(f"\n{user.title()}, your current balance is ₹{accounts[user]}")
+def checking_balance(user):
+    for k, v in accounts.items():
+        if user == k:
+            balance = v
+    return balance
 
 
-def deposit_money(user):
-    try:
-        amount = float(input("Enter amount to deposit: ₹"))
-        if amount <= 0:
-            print("Amount must be greater than 0.")
-        else:
-            accounts[user] += amount
-            print(f"₹{amount} deposited. New balance: ₹{accounts[user]}")
-    except ValueError:
-        print("Invalid input. Please enter a number.")
+def depositing_money(user):
+    for k, v in accounts.items():
+        if user == k:
+            dep = int(input("Enter the amount you want to deposit"))
+            v += dep
+            net_balance = v
+    return net_balance
 
 
-def withdraw_money(user):
-    try:
-        amount = float(input("Enter amount to withdraw: ₹"))
-        if amount <= 0:
-            print("Amount must be greater than 0.")
-        elif amount > accounts[user]:
-            print("Insufficient balance.")
-        else:
-            accounts[user] -= amount
-            print(f"₹{amount} withdrawn. New balance: ₹{accounts[user]}")
-    except ValueError:
-        print("Invalid input. Please enter a number.")
+def withdrawing_money(user):
+    for k, v in accounts.items():
+        if user == k:
+            wid = int(input("enter the amount you want to withdraw"))
+            v = v - wid
+            if v < 0:
+                print("You do not have enough balance")
+            else:
+                print(v)
 
 
-print("Welcome to Simple Bank!")
+print("welcome to the bank")
+user = input("enter your user name").lower()
 
-user = input("Enter your name: ").lower()
-
-if user not in accounts:
-    print("User not found. Exiting.")
+if user in accounts.keys():
+    print(show_menu())
+    a = int(
+        input(
+            "Select any one option out of \n 1.checking balance \n2.depositing money \n3.withdrawing money"
+        )
+    )
+    if a == 1:
+        print("The balance in your account is :", checking_balance(user))
+    elif a == 2:
+        print("Your net balance after depositing is :", depositing_money(user))
+    elif a == 3:
+        print(withdrawing_money(user))
+    else:
+        print("Invalid Choice")
 else:
-    while True:
-        show_menu()
-        choice = input("Enter your choice (1-4): ")
-
-        if choice == "1":
-            check_balance(user)
-        elif choice == "2":
-            deposit_money(user)
-        elif choice == "3":
-            withdraw_money(user)
-        elif choice == "4":
-            print("Thank you for banking with us!")
-            break
-        else:
-            print("Invalid choice. Please select 1, 2, 3 or 4.")
+    print("Please enter correct username")
